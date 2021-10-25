@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Jobs" icon-name="custom:custom63">
+        <div class="slds-m-around_medium">
+            <template if:true={jobs}>
+                <ul>
+                    <template for:each={jobs} for:item="job">
+                        <li key={job.Id}><a href={job.link} key={job.Id}>{job.Name}</a></li>
+                    </template>
+                </ul>
+            </template>
+            <template if:true={error}>
+                {error}
+            </template>
+        </div>
+    </lightning-card>
+
+    
+</template>
