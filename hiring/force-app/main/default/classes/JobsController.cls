@@ -3,7 +3,7 @@ public without sharing class JobsController {
 
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<Position__c> getJobList() {
         return [
             SELECT Id, Name,Employment_Type__c,Hiring_Manager__r.Name,Job_Description__c,Location__c,Max_Pay__c,Min_Pay__c,Responsibilities__c,Skills_Required__c,Type__c,Status__c
@@ -12,7 +12,7 @@ public without sharing class JobsController {
         ];
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static Position__c getJob(String recordId) {
         try {
             return [
@@ -27,7 +27,7 @@ public without sharing class JobsController {
         return null;
     }
 
-    @AuraEnabled 
+    @AuraEnabled(cacheable=true)
     public static Boolean fetchUserType(String recordId) {
         if(Auth.CommunitiesUtil.isGuestUser()){
             return false;
@@ -37,7 +37,7 @@ public without sharing class JobsController {
         }
     }
 
-    @AuraEnabled 
+    @AuraEnabled(cacheable=true) 
     public static User fetchUser() {
         if(Auth.CommunitiesUtil.isGuestUser()){
             return null;
